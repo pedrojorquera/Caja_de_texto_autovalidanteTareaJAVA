@@ -16,6 +16,11 @@ public class Window extends javax.swing.JFrame {
      */
     public Window() {
         initComponents();
+        jButton1.setEnabled(false);
+        lbErrorCP.setVisible(false);
+        lbErrorDNI.setVisible(false);
+        lbErrorTLF.setVisible(false);
+
     }
 
     /**
@@ -28,40 +33,146 @@ public class Window extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        cajaTextoAutovalidante2 = new cajatextoautovalidante.CajaTextoAutovalidante();
+        cajaTextoAutovalidanteDNI = new cajatextoautovalidante.CajaTextoAutovalidante();
+        cajaTextoAutovalidanteCP = new cajatextoautovalidante.CajaTextoAutovalidante();
+        cajaTextoAutovalidanteTLF = new cajatextoautovalidante.CajaTextoAutovalidante();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbErrorCP = new javax.swing.JLabel();
+        lbErrorDNI = new javax.swing.JLabel();
+        lbErrorTLF = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                comprobarButtton(evt);
+            }
+        });
 
-        jButton1.setText("Pierde el foco");
+        jButton1.setText("Play");
+        jButton1.setName("btPlay"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                comprobarButton(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        cajaTextoAutovalidante2.setTipoValidacion("tlf");
+        cajaTextoAutovalidanteDNI.setTipoValidacion("DNI");
+        cajaTextoAutovalidanteDNI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                comprobarButton(evt);
+            }
+        });
+
+        cajaTextoAutovalidanteCP.setTipoValidacion("CP");
+        cajaTextoAutovalidanteCP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                comprobarButton(evt);
+            }
+        });
+
+        cajaTextoAutovalidanteTLF.setTipoValidacion("TLF");
+        cajaTextoAutovalidanteTLF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                comprobarButton(evt);
+            }
+        });
+
+        jLabel1.setText("CP");
+
+        jLabel2.setText("DNI");
+
+        jLabel3.setText("TLF");
+
+        jLabel4.setName("jLabelErrorCP"); // NOI18N
+
+        lbErrorCP.setText("Mensaje error CP");
+        lbErrorCP.setName("lbErrorCP"); // NOI18N
+
+        lbErrorDNI.setText("Mensaje error DNI");
+        lbErrorDNI.setName("lbErrorDNI"); // NOI18N
+
+        lbErrorTLF.setText("Mensaje error TLF");
+        lbErrorTLF.setName("lbErrorTLF"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(60, 60, 60))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(cajaTextoAutovalidante2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cajaTextoAutovalidanteTLF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cajaTextoAutovalidanteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(237, 237, 237))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(cajaTextoAutovalidanteCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbErrorDNI)
+                                            .addComponent(lbErrorCP)
+                                            .addComponent(lbErrorTLF)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jButton1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(cajaTextoAutovalidante2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel4)))
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbErrorCP)
+                        .addComponent(cajaTextoAutovalidanteCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel2)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cajaTextoAutovalidanteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbErrorDNI))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cajaTextoAutovalidanteTLF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbErrorTLF))))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         pack();
@@ -70,6 +181,39 @@ public class Window extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comprobarButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprobarButton
+
+        if (cajaTextoAutovalidanteCP.isCorreccion()) {
+            lbErrorCP.setVisible(false);
+        } else {
+            lbErrorCP.setVisible(true);
+            lbErrorCP.setText(cajaTextoAutovalidanteCP.getMensajesError());
+        }
+
+        if (cajaTextoAutovalidanteDNI.isCorreccion()) {
+            lbErrorDNI.setVisible(false);
+        } else {
+            lbErrorDNI.setVisible(true);
+            lbErrorDNI.setText(cajaTextoAutovalidanteDNI.getMensajesError());
+        }
+
+        if (cajaTextoAutovalidanteTLF.isCorreccion()) {
+            lbErrorTLF.setVisible(false);
+        } else {
+            lbErrorTLF.setVisible(true);
+            lbErrorTLF.setText(cajaTextoAutovalidanteTLF.getMensajesError());
+        }
+
+
+    }//GEN-LAST:event_comprobarButton
+
+    private void comprobarButtton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprobarButtton
+        // TODO add your handling code here:
+        if (cajaTextoAutovalidanteCP.isCorreccion() && cajaTextoAutovalidanteDNI.isCorreccion() && cajaTextoAutovalidanteTLF.isCorreccion()) {
+              jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_comprobarButtton
 
     /**
      * @param args the command line arguments
@@ -107,7 +251,16 @@ public class Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cajatextoautovalidante.CajaTextoAutovalidante cajaTextoAutovalidante2;
+    private cajatextoautovalidante.CajaTextoAutovalidante cajaTextoAutovalidanteCP;
+    private cajatextoautovalidante.CajaTextoAutovalidante cajaTextoAutovalidanteDNI;
+    private cajatextoautovalidante.CajaTextoAutovalidante cajaTextoAutovalidanteTLF;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lbErrorCP;
+    private javax.swing.JLabel lbErrorDNI;
+    private javax.swing.JLabel lbErrorTLF;
     // End of variables declaration//GEN-END:variables
 }
